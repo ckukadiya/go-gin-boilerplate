@@ -28,6 +28,7 @@ func Load(env string) (*Configuration, error) {
 type Configuration struct {
 	Server *Server
 	DB     *Database
+	Logger *Logger
 }
 
 // Database holds data necessery for database configuration
@@ -39,4 +40,8 @@ type Database struct {
 // Server holds data necessery for server configuration
 type Server struct {
 	Port int
+}
+
+type Logger struct {
+	Path string
 }
