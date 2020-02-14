@@ -16,8 +16,10 @@ type PersonModel interface {
 }
 
 type PersonListResponse struct {
-	Error   bool      `json:"error"`
-	Data    []*Person `json:"data"`
-	Total   int       `json:"total"`
-	Message string    `json:"message"`
+	Data  []*Person `json:"data"`
+	Total int       `json:"total"`
+}
+
+type PersonGetResponse struct {
+	Data *Person `json:"data"`
 }
