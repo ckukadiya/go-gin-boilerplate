@@ -1,12 +1,13 @@
 package router
 
 import (
-	"github.com/ckukadiya/go-gin-boilerplate/cmd/api/middelware"
+	request_parser "github.com/ckukadiya/go-gin-boilerplate/cmd/api/request-parser"
 	apperror "github.com/ckukadiya/go-gin-boilerplate/internal/error"
 	"github.com/ckukadiya/go-gin-boilerplate/internal/modules/person"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"net/http"
 )
 
@@ -23,7 +24,11 @@ func NewPerson(s *person.Service, r *gin.RouterGroup) {
 }
 
 func (p *Person) list(c *gin.Context) {
-	res, err := p.service.List(c, bson.M{})
+	pagination, _ := request_parser.Paginate(c)
+	findOptions := options.Find()
+	findOptions.SetLimit(pagination.Limit)
+	findOptions.Skip = &pagination.Skip
+	res, err := p.service.List(c, bson.D{{}}, findOptions)
 	if err != nil {
 		apperror.Response(c, err)
 		return
@@ -32,7 +37,7 @@ func (p *Person) list(c *gin.Context) {
 }
 
 func (p *Person) get(c *gin.Context) {
-	id, err := middelware.ID(c)
+	id, err := request_parser.ID(c)
 	if err != nil {
 		apperror.Response(c, err)
 		return

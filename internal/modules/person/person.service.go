@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"net/http"
 )
@@ -25,10 +26,10 @@ type Service struct {
 	collection string
 }
 
-func (s *Service) List(c *gin.Context, filter bson.M) (*PersonListResponse, error) {
+func (s *Service) List(c *gin.Context, filter bson.D, findOptions *options.FindOptions) (*PersonListResponse, error) {
 	var people []*Person
 	collection := s.connection.Database(s.database).Collection(s.collection)
-	cur, err := collection.Find(context.TODO(), filter)
+	cur, err := collection.Find(context.TODO(), filter, findOptions)
 	if err != nil {
 		log.Println("Error on finding all documents ", err.Error())
 		return nil, apperror.BadRequest
