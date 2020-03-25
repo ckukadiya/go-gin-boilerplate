@@ -2,6 +2,8 @@ package person
 
 import (
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type Person struct {
@@ -12,7 +14,8 @@ type Person struct {
 }
 
 type PersonModel interface {
-	List(*gin.Context) *PersonListResponse
+	List(*gin.Context, bson.D, *options.FindOptions) (*PersonListResponse, error)
+	Get(*gin.Context, bson.M) (*PersonGetResponse, error)
 }
 
 type PersonListResponse struct {
