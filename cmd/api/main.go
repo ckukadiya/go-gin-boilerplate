@@ -2,13 +2,11 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/ckukadiya/go-gin-boilerplate/cmd/api/config"
 	"github.com/ckukadiya/go-gin-boilerplate/cmd/api/router"
 	"github.com/ckukadiya/go-gin-boilerplate/internal/database/mongodb"
-	"github.com/ckukadiya/go-gin-boilerplate/internal/modules/person"
+	"github.com/ckukadiya/go-gin-boilerplate/internal/modules/friendship"
 	"github.com/gin-gonic/gin"
-	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"log"
 	"os"
@@ -27,25 +25,20 @@ func main() {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
-	cfg, err := config.Load(mode)
-	if err != nil {
-		fmt.Println("error in getting configuration")
-		fmt.Println(err)
-	}
-	initLog(cfg)
+	config.Load(mode)
+	initLog()
 	r := gin.Default()
 
 	// Create database connection
-	db := mongodb.New(cfg)
-	err = db.Ping(context.Background(), readpref.Primary())
+	mongodb.NewMongoDB()
+	err := mongodb.GetMongoDBClient().Ping(context.Background(), readpref.Primary())
 	if err != nil {
 		log.Fatal("Couldn't connect to the database", err)
-	} else {
-		log.Println("Connected!")
 	}
 
-	addV1Services(r, db, cfg)
+	addV1Services(r)
 	port := "8080"
+	cfg := config.GetConfig()
 	if cfg.Server.Port != 0 {
 		port = strconv.Itoa(cfg.Server.Port)
 	}
@@ -53,15 +46,18 @@ func main() {
 	r.Run(":" + port)
 }
 
-func addV1Services(r *gin.Engine, db *mongo.Client, cfg *config.Configuration) {
+func addV1Services(r *gin.Engine) {
 	v1Route := r.Group("/v1")
 	// TODO: Find out the way to add dynamic router
-	router.NewPerson(person.New(db, cfg), v1Route)
+	router.NewFriendship(new(friendship.FriendshipController), v1Route)
+	// router.NewPerson(person.New(db, cfg), v1Route)
 }
 
-func initLog(cfg *config.Configuration) {
+func initLog() {
 	// create logfile
 	date := time.Now().Format("2006-01-02")
+	cfg := config.GetConfig()
+
 	n := cfg.Logger.Path + "/" + date + ".log"
 	f, err := os.OpenFile(n, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
 	if err != nil {

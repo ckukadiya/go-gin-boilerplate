@@ -2,6 +2,7 @@ package apperror
 
 import (
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 )
 
@@ -62,11 +63,14 @@ func Response(c *gin.Context, err error) {
 	case *GeneralError:
 		e := err.(*GeneralError)
 		if e.Message == "" {
+			log.Println("Error from Response : ", e)
 			c.AbortWithStatus(e.Status)
 		} else {
+			log.Println("Error from Response : ", e.Message)
 			c.AbortWithStatusJSON(e.Status, e)
 		}
 	default:
+		log.Println("Error from Response : ", err.Error())
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 			"message": err.Error(),
 		})
