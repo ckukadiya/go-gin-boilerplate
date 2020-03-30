@@ -1,8 +1,8 @@
 package friendship
 
 import (
-	"github.com/ckukadiya/go-gin-boilerplate/internal/modules/base"
 	"github.com/gin-gonic/gin"
+	"go-gin-boilerplate/internal/modules/base"
 	"net/http"
 )
 

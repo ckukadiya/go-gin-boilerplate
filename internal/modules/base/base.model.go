@@ -1,8 +1,8 @@
 package base
 
 import (
-	"github.com/ckukadiya/go-gin-boilerplate/internal/database/mongodb"
 	"github.com/gin-gonic/gin"
+	"go-gin-boilerplate/internal/database/mongodb"
 )
 
 type BaseControllerInterface interface {

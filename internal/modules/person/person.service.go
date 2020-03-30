@@ -2,9 +2,9 @@ package person
 
 import (
 	"context"
-	"github.com/ckukadiya/go-gin-boilerplate/cmd/api/config"
-	apperror "github.com/ckukadiya/go-gin-boilerplate/internal/error"
 	"github.com/gin-gonic/gin"
+	"go-gin-boilerplate/cmd/api/config"
+	apperror "go-gin-boilerplate/internal/error"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

@@ -1,3 +1,5 @@
 vendor/
 go.sum
 /log/
+.idea/
+main.exe

@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"github.com/ckukadiya/go-gin-boilerplate/cmd/api/config"
-	"github.com/ckukadiya/go-gin-boilerplate/cmd/api/router"
-	"github.com/ckukadiya/go-gin-boilerplate/internal/database/mongodb"
-	"github.com/ckukadiya/go-gin-boilerplate/internal/modules/friendship"
 	"github.com/gin-gonic/gin"
+	"go-gin-boilerplate/cmd/api/config"
+	"go-gin-boilerplate/cmd/api/router"
+	"go-gin-boilerplate/internal/database/mongodb"
+	"go-gin-boilerplate/internal/modules/friendship"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"log"
 	"os"

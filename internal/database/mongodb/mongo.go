@@ -2,7 +2,7 @@ package mongodb
 
 import (
 	"context"
-	"github.com/ckukadiya/go-gin-boilerplate/cmd/api/config"
+	"go-gin-boilerplate/cmd/api/config"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"

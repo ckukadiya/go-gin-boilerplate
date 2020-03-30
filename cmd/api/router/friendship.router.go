@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/ckukadiya/go-gin-boilerplate/internal/modules/friendship"
 	"github.com/gin-gonic/gin"
+	"go-gin-boilerplate/internal/modules/friendship"
 )
 
 func NewFriendship(f *friendship.FriendshipController, r *gin.RouterGroup) {

@@ -1,8 +1,8 @@
 package request_parser
 
 import (
-	apperror "github.com/ckukadiya/go-gin-boilerplate/internal/error"
 	"github.com/gin-gonic/gin"
+	apperror "go-gin-boilerplate/internal/error"
 )
 
 const defaultLimit = 100

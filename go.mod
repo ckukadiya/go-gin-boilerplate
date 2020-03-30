@@ -1,4 +1,4 @@
-module github.com/ckukadiya/go-gin-boilerplate
+module go-gin-boilerplate
 
 go 1.13
 

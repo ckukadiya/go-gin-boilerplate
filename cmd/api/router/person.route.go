@@ -1,10 +1,10 @@
 package router
 
 import (
-	request_parser "github.com/ckukadiya/go-gin-boilerplate/cmd/api/request-parser"
-	apperror "github.com/ckukadiya/go-gin-boilerplate/internal/error"
-	"github.com/ckukadiya/go-gin-boilerplate/internal/modules/person"
 	"github.com/gin-gonic/gin"
+	request_parser "go-gin-boilerplate/cmd/api/request-parser"
+	apperror "go-gin-boilerplate/internal/error"
+	"go-gin-boilerplate/internal/modules/person"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
