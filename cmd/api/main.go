@@ -82,7 +82,7 @@ func initLog() {
 	cfg := config.GetConfig()
 
 	n := cfg.Logger.Path + "/" + date + ".log"
-	f, err := os.OpenFile(n, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
+	f, err := os.Create(n)
 	if err != nil {
 		os.Exit(1)
 	}
