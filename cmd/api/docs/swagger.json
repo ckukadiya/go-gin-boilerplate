@@ -1,11 +1,9 @@
 {
   "consumes": [
-    "application/json",
-    "application/xml"
+    "application/json"
   ],
   "produces": [
-    "application/json",
-    "application/xml"
+    "application/json"
   ],
   "schemes": [
     "http",
@@ -13,13 +11,12 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "the purpose of this application is to provide an application\nthat is using plain go code to define an API\n\nThis should demonstrate all the possible comment annotations\nthat are available to turn go code into a fully compliant swagger 2.0 spec",
-    "title": "Petstore API.",
+    "description": "The purpose of this application is to provide boilerplate\nof REST full API using MongoDB",
+    "title": "Go Gin Boilerplate API Demo.",
     "termsOfService": "there are no TOS at this moment, use at your own risk we take no responsibility",
     "contact": {
-      "name": "John Doe",
-      "url": "http://john.doe.com",
-      "email": "john.doe@example.com"
+      "name": "Chintan Kukadiya",
+      "email": "contact.chintankukadiya@gmail.com"
     },
     "license": {
       "name": "MIT",
@@ -315,38 +312,5 @@
       },
       "x-go-package": "go-gin-boilerplate/internal/modules/person"
     }
-  },
-  "securityDefinitions": {
-    "api_key": {
-      "type": "apiKey",
-      "name": "KEY",
-      "in": "header"
-    },
-    "oauth2": {
-      "type": "oauth2",
-      "in": "header",
-      "flow": "accessCode",
-      "authorizationUrl": "/oauth2/auth",
-      "tokenUrl": "/oauth2/token",
-      "scopes": {
-        "bar": "foo"
-      }
-    }
-  },
-  "security": [
-    {
-      "api_key": []
-    }
-  ],
-  "x-meta-array": [
-    "value1",
-    "value2"
-  ],
-  "x-meta-array-obj": [
-    {
-      "name": "obj",
-      "value": "field"
-    }
-  ],
-  "x-meta-value": "value"
+  }
 }

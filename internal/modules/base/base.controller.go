@@ -2,9 +2,9 @@ package base
 
 import (
 	"github.com/gin-gonic/gin"
-	request_parser "go-gin-boilerplate/cmd/api/request-parser"
 	"go-gin-boilerplate/internal/database/mongodb"
 	apperror "go-gin-boilerplate/internal/error"
+	request_parser "go-gin-boilerplate/internal/request-parser"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
