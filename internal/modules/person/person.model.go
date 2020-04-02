@@ -1,28 +1,31 @@
 package person
 
 import (
-	"github.com/gin-gonic/gin"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+// Person represents the details of single person
+//
+// swagger:model
 type Person struct {
-	Name   string `json:"name"`
-	Age    int    `json:"age"`
-	Gender string `json:"gender"`
-	State  string `json:"state"`
+	Id     primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	Name   string             `json:"name"`
+	Age    int                `json:"age"`
+	Gender string             `json:"gender"`
+	State  string             `json:"state"`
 }
 
-type PersonModel interface {
-	List(*gin.Context, bson.D, *options.FindOptions) (*PersonListResponse, error)
-	Get(*gin.Context, bson.M) (*PersonGetResponse, error)
-}
-
+// PersonListResponse represents the response of all people
+//
+// swagger:model
 type PersonListResponse struct {
-	Data  []*Person `json:"data"`
-	Total int       `json:"total"`
+	Data  []Person `json:"data"`
+	Total int      `json:"total"`
 }
 
-type PersonGetResponse struct {
-	Data *Person `json:"data"`
+// PersonResponse represents the response of person details
+//
+// swagger:model
+type PersonResponse struct {
+	Data Person `json:"data"`
 }

@@ -62,7 +62,7 @@ func (this *BaseController) Update(c *gin.Context, data interface{}) bool {
 		return false
 	}
 	if uid != "" {
-		if err := c.ShouldBind(data); err != nil {
+		if err := c.ShouldBind(data); err == nil {
 			objectId, _ := primitive.ObjectIDFromHex(uid)
 			if _, errorOnUpdate := this.FindOneAndUpdate(bson.D{{"_id", objectId}}, data); errorOnUpdate != nil {
 				apperror.Response(c, errorOnUpdate)

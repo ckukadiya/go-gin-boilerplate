@@ -1,0 +1,352 @@
+{
+  "consumes": [
+    "application/json",
+    "application/xml"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "the purpose of this application is to provide an application\nthat is using plain go code to define an API\n\nThis should demonstrate all the possible comment annotations\nthat are available to turn go code into a fully compliant swagger 2.0 spec",
+    "title": "Petstore API.",
+    "termsOfService": "there are no TOS at this moment, use at your own risk we take no responsibility",
+    "contact": {
+      "name": "John Doe",
+      "url": "http://john.doe.com",
+      "email": "john.doe@example.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    },
+    "version": "0.0.1"
+  },
+  "host": "localhost:8080",
+  "basePath": "/v1",
+  "paths": {
+    "/person/get/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "person"
+        ],
+        "summary": "Returns person details of given person id.",
+        "operationId": "getPerson",
+        "parameters": [
+          {
+            "description": "Person id which is require to fetch person details.",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "person get response",
+            "schema": {
+              "$ref": "#/definitions/PersonResponse"
+            }
+          },
+          "default": {
+            "description": "General error",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
+          }
+        }
+      }
+    },
+    "/person/list": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "person"
+        ],
+        "summary": "Returns list of all people.",
+        "operationId": "getPersons",
+        "responses": {
+          "200": {
+            "description": "person list response",
+            "schema": {
+              "$ref": "#/definitions/PersonListResponse"
+            }
+          },
+          "default": {
+            "description": "General error",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
+          }
+        }
+      }
+    },
+    "/person/new": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "person"
+        ],
+        "summary": "Insert given new person details in people.",
+        "operationId": "addPerson",
+        "parameters": [
+          {
+            "description": "Person object that needs to be added to the people",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "person add response",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "General error",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
+          }
+        }
+      }
+    },
+    "/person/remove/{id}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "person"
+        ],
+        "summary": "Delete person details of given person id.",
+        "operationId": "deletePerson",
+        "parameters": [
+          {
+            "description": "Person id which is require to delete person details.",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "person delete response",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "General error",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
+          }
+        }
+      }
+    },
+    "/person/update/{id}": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "person"
+        ],
+        "summary": "Update given person details in people.",
+        "operationId": "updatePerson",
+        "parameters": [
+          {
+            "description": "Person id which is require to fetch person details.",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Person object that needs to be update in the people",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "person update response",
+            "schema": {
+              "$ref": "#/definitions/PersonResponse"
+            }
+          },
+          "default": {
+            "description": "General error",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GeneralError": {
+      "description": "GeneralError is the default error struct containing detailed information about the error",
+      "type": "object",
+      "properties": {
+        "message": {
+          "description": "Message is the error message that may be displayed to end users",
+          "type": "string",
+          "x-go-name": "Message"
+        }
+      },
+      "x-go-package": "go-gin-boilerplate/internal/error"
+    },
+    "ObjectID": {
+      "type": "array",
+      "title": "ObjectID is the BSON ObjectID type.",
+      "items": {
+        "type": "integer",
+        "format": "uint8"
+      },
+      "x-go-package": "go.mongodb.org/mongo-driver/bson/primitive"
+    },
+    "Person": {
+      "description": "Person represents the details of single person",
+      "type": "object",
+      "properties": {
+        "_id": {
+          "$ref": "#/definitions/ObjectID"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Age"
+        },
+        "gender": {
+          "type": "string",
+          "x-go-name": "Gender"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "state": {
+          "type": "string",
+          "x-go-name": "State"
+        }
+      },
+      "x-go-package": "go-gin-boilerplate/internal/modules/person"
+    },
+    "PersonListResponse": {
+      "description": "PersonListResponse represents the response of all people",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          },
+          "x-go-name": "Data"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "go-gin-boilerplate/internal/modules/person"
+    },
+    "PersonResponse": {
+      "description": "PersonResponse represents the response of person details",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Person"
+        }
+      },
+      "x-go-package": "go-gin-boilerplate/internal/modules/person"
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "KEY",
+      "in": "header"
+    },
+    "oauth2": {
+      "type": "oauth2",
+      "in": "header",
+      "flow": "accessCode",
+      "authorizationUrl": "/oauth2/auth",
+      "tokenUrl": "/oauth2/token",
+      "scopes": {
+        "bar": "foo"
+      }
+    }
+  },
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "x-meta-array": [
+    "value1",
+    "value2"
+  ],
+  "x-meta-array-obj": [
+    {
+      "name": "obj",
+      "value": "field"
+    }
+  ],
+  "x-meta-value": "value"
+}

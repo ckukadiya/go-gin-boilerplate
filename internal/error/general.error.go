@@ -7,6 +7,8 @@ import (
 )
 
 // GeneralError is the default error struct containing detailed information about the error
+//
+// swagger:model
 type GeneralError struct {
 	// HTTP Status code to be set in response
 	Status int `json:"-"`
