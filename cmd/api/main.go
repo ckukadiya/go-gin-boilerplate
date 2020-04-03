@@ -80,7 +80,9 @@ func initLog() {
 	// create logfile
 	date := time.Now().Format("2006-01-02")
 	cfg := config.GetConfig()
-
+	if _, err := os.Stat(cfg.Logger.Path); os.IsNotExist(err) {
+		os.Mkdir(cfg.Logger.Path, 0666)
+	}
 	n := cfg.Logger.Path + "/" + date + ".log"
 	f, err := os.Create(n)
 	if err != nil {
