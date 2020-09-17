@@ -10,7 +10,7 @@ func NewPerson(p *person.PersonController, r *gin.RouterGroup) {
 
 	personRoute := r.Group("/person")
 
-	// swagger:operation GET /person/list person getPersons
+	// swagger:operation GET /person person getPersons
 	//
 	// Returns list of all people.
 	//
@@ -30,9 +30,9 @@ func NewPerson(p *person.PersonController, r *gin.RouterGroup) {
 	//      schema:
 	//	        "$ref": "#/definitions/GeneralError"
 	//
-	personRoute.GET("/list", p.GetAll)
+	personRoute.GET("", p.GetAll)
 
-	// swagger:operation GET /person/get/{id} person getPerson
+	// swagger:operation GET /person/{id} person getPerson
 	//
 	// Returns person details of given person id.
 	//
@@ -60,9 +60,9 @@ func NewPerson(p *person.PersonController, r *gin.RouterGroup) {
 	//      schema:
 	//	        "$ref": "#/definitions/GeneralError"
 	//
-	personRoute.GET("/get/:id", p.Get)
+	personRoute.GET("/:id", p.Get)
 
-	// swagger:operation POST /person/new person addPerson
+	// swagger:operation POST /person person addPerson
 	//
 	// Insert given new person details in people.
 	//
@@ -95,9 +95,9 @@ func NewPerson(p *person.PersonController, r *gin.RouterGroup) {
 	//      schema:
 	//	        "$ref": "#/definitions/GeneralError"
 	//
-	personRoute.POST("/new", p.Post)
+	personRoute.POST("", p.Post)
 
-	// swagger:operation PUT /person/update/{id} person updatePerson
+	// swagger:operation PUT /person/{id} person updatePerson
 	//
 	// Update given person details in people.
 	//
@@ -132,9 +132,9 @@ func NewPerson(p *person.PersonController, r *gin.RouterGroup) {
 	//      schema:
 	//	        "$ref": "#/definitions/GeneralError"
 	//
-	personRoute.PUT("/update/:id", p.Put)
+	personRoute.PUT("/:id", p.Put)
 
-	// swagger:operation DELETE /person/remove/{id} person deletePerson
+	// swagger:operation DELETE /person/{id} person deletePerson
 	//
 	// Delete person details of given person id.
 	//
@@ -162,5 +162,5 @@ func NewPerson(p *person.PersonController, r *gin.RouterGroup) {
 	//      schema:
 	//	        "$ref": "#/definitions/GeneralError"
 	//
-	personRoute.DELETE("/remove/:id", p.Delete)
+	personRoute.DELETE("/:id", p.Delete)
 }

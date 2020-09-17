@@ -27,47 +27,7 @@
   "host": "localhost:8080",
   "basePath": "/v1",
   "paths": {
-    "/person/get/{id}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "person"
-        ],
-        "summary": "Returns person details of given person id.",
-        "operationId": "getPerson",
-        "parameters": [
-          {
-            "description": "Person id which is require to fetch person details.",
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "person get response",
-            "schema": {
-              "$ref": "#/definitions/PersonResponse"
-            }
-          },
-          "default": {
-            "description": "General error",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        }
-      }
-    },
-    "/person/list": {
+    "/person": {
       "get": {
         "consumes": [
           "application/json"
@@ -94,9 +54,7 @@
             }
           }
         }
-      }
-    },
-    "/person/new": {
+      },
       "post": {
         "consumes": [
           "application/json"
@@ -144,8 +102,8 @@
         }
       }
     },
-    "/person/remove/{id}": {
-      "delete": {
+    "/person/{id}": {
+      "get": {
         "consumes": [
           "application/json"
         ],
@@ -155,11 +113,11 @@
         "tags": [
           "person"
         ],
-        "summary": "Delete person details of given person id.",
-        "operationId": "deletePerson",
+        "summary": "Returns person details of given person id.",
+        "operationId": "getPerson",
         "parameters": [
           {
-            "description": "Person id which is require to delete person details.",
+            "description": "Person id which is require to fetch person details.",
             "name": "id",
             "in": "path",
             "required": true,
@@ -170,9 +128,9 @@
         ],
         "responses": {
           "200": {
-            "description": "person delete response",
+            "description": "person get response",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/PersonResponse"
             }
           },
           "default": {
@@ -182,9 +140,7 @@
             }
           }
         }
-      }
-    },
-    "/person/update/{id}": {
+      },
       "put": {
         "consumes": [
           "application/json"
@@ -222,6 +178,44 @@
             "description": "person update response",
             "schema": {
               "$ref": "#/definitions/PersonResponse"
+            }
+          },
+          "default": {
+            "description": "General error",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "person"
+        ],
+        "summary": "Delete person details of given person id.",
+        "operationId": "deletePerson",
+        "parameters": [
+          {
+            "description": "Person id which is require to delete person details.",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "person delete response",
+            "schema": {
+              "type": "string"
             }
           },
           "default": {
