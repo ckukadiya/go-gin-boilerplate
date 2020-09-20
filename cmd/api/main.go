@@ -39,7 +39,8 @@ import (
 
 func main() {
 	// Getting configuration base on environment
-	mode := os.Getenv("MODE")
+	mode := os.Getenv("APP_MODE")
+
 	if mode == "" {
 		mode = "dev"
 	}
