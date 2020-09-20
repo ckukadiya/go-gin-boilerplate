@@ -24,7 +24,7 @@ You will need the following prerequisites installed on your machine.
 1. MongoDB ([Setup MongoDB Enviourment](https://docs.mongodb.com/manual/administration/install-community/ "Setup MongoDB Enviourment"))
 
 ##### Install Dependencies
-Install all Go.mod  dependecies 
+Install all Go.mod dependencies 
 
     go list -m all
 
@@ -40,18 +40,15 @@ Install Air
 
 ### RUN 
 
-Run the application just write follwoing command
+Run the application just write following  command
 
     air
 
 ##### For Production Mode
 
-Create the follwing enviourment varibale
-
-
+Create the following environment variable
 
     APP_MODE = prod
-
 
 ------------
 
